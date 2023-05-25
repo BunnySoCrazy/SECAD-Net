@@ -1,5 +1,5 @@
 # SECAD-Net
-
+![teaser](https://github.com/BunnySoCrazy/SECAD-Net/blob/main/assets/teaser_github.gif)
 This repository provides the official code of SECAD-Net.
 
 
