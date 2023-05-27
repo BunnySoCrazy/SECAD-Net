@@ -9,7 +9,7 @@ from dataset import dataloader
 
 def main(args):
     # Set random seed
-	init_seeds(10)
+	init_seeds()
  
   	# Load experiment specifications
 	experiment_directory = os.path.join('./exp_log', args.experiment_directory)
