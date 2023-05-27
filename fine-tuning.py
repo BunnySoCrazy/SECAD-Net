@@ -27,7 +27,6 @@ def main(args):
  
 	specs["experiment_directory"] = experiment_directory
 
-
 	for index in shape_indexes:
 		print('Fine-tuning shape index', index)
 		shapename = occ_dataset.data_names[index]
@@ -35,24 +34,20 @@ def main(args):
 		voxels = occ_dataset.data_voxels[index].unsqueeze(0).cuda()
 		ft_agent = FineTunerAE(specs)
 
-		for phase in stages:
-			start_epoch = ft_agent.load_shape_code(phase, voxels, shapename, args.checkpoint)
-   
-			# start finetuning
-			clock = ft_agent.clock
-			pbar = tqdm(range(start_epoch, start_epoch + epoches_each_stage))
-   
-			for e in pbar:
-				for i in range(40):
-					outputs, out_info = ft_agent.train_func(occ_data)
-					pbar.set_description("EPOCH[{}][{}]".format(e, epoches_each_stage))
-					clock.tick()
-				pbar.set_postfix(out_info)
-				ft_agent.save_model_if_best_per_shape(shapename)
-				clock.tock()
-    
-			ft_agent.save_model_parameters_per_shape(shapename,"last_%d.pth"%(phase))
+		start_epoch = ft_agent.load_shape_code(voxels, args.checkpoint)
 
+		# start finetuning
+		clock = ft_agent.clock
+		pbar = tqdm(range(start_epoch, start_epoch + epoches_ft))
+
+		for e in pbar:
+			for i in range(40):
+				outputs, out_info = ft_agent.train_func(occ_data)
+				pbar.set_description("EPOCH[{}][{}]".format(e, epoches_ft))
+				clock.tick()
+			pbar.set_postfix(out_info)
+			ft_agent.save_model_if_best_per_shape(shapename)
+			clock.tock()
  
 if __name__ == "__main__":
 	arg_parser = argparse.ArgumentParser()

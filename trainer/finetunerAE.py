@@ -67,26 +67,16 @@ class FineTunerAE(BaseTrainer):
         
         return outputs, loss_dict, acc_dict
     
-    def load_shape_code(self, phase, voxels, shapename, checkpoint):
-        print('Phase , ', phase)
-        if phase == 0:
-            continue_from = checkpoint
-            print('Continuing from "{}"'.format(continue_from))
-            model_epoch = super().load_model_parameters(continue_from)
-            shape_code = self.encoder(voxels)
-            shape_code = shape_code.detach().cpu().numpy()
+    def load_shape_code(self, voxels, checkpoint):
+        continue_from = checkpoint
+        print('Continuing from "{}"'.format(continue_from))
+        model_epoch = super().load_model_parameters(continue_from)
+        shape_code = self.encoder(voxels)
+        shape_code = shape_code.detach().cpu().numpy()
 
-            shape_code = torch.from_numpy(shape_code)
-            print('shape_code loaded, ', shape_code.shape)
-            start_epoch = model_epoch +1 
-        else:
-            continue_from = "last_%d"%(phase-1)
-            print('Continuing from "{}"'.format(continue_from))
-            model_epoch, shape_code = super().load_model_parameters_per_shape(
-                shapename, continue_from
-            )
-            print('shape_code loaded, ', shape_code.shape)
-            start_epoch = model_epoch + 1 
+        shape_code = torch.from_numpy(shape_code)
+        print('shape_code loaded, ', shape_code.shape)
+        start_epoch = model_epoch +1 
             
         self.shape_code = shape_code
         self.shape_code.requires_grad = True
