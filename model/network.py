@@ -109,8 +109,7 @@ class Generator(nn.Module):
       														for i in range(self.num_primitives)]
 		sdfs_2d = torch.cat(sdfs_2d, dim=-1)
 
-		# total_2d_occ = torch.sigmoid(-1*sdfs_2d*self.sharpness)
-		total_2d_occ = (-1*sdfs_2d>0).float()
+		total_2d_occ = torch.sigmoid(-1*sdfs_2d*self.sharpness)
   
 		box_ext = sdfExtrusion(sdfs_2d, boxes[..., 7], transformed_points).squeeze(-1)
 		primitive_sdf = box_ext
