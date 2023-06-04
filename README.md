@@ -26,6 +26,9 @@ $ sh scripts/fine-tuning.sh
 $ sh scripts/test.sh
 ```
 
+## Pre-trained model
+
+Download the pretrained model from this [link](https://drive.google.com/file/d/1uP-AoCqAMOQ9Q2W4fwk0iN5sGCY6UC4x/view?usp=share_link) and put it under `exp_log/ABC/ModelParameters/`, then run the fine-tuning code.
 
 ## Acknowledgement
 
