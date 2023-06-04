@@ -19,7 +19,7 @@ def main(args):
 	specs = load_experiment_specifications(experiment_directory)
 
 	# Create dataset and data loader
-	occ_dataset = dataloader.GTSamples(specs["DataSource"], test_flag=True)
+	occ_dataset = dataloader.GTSamples(specs["DataSource"], test_flag=False)
 	data_loader = data_utils.DataLoader(
 		occ_dataset,
 		batch_size=specs["BatchSize"],
