@@ -2,7 +2,7 @@
 ![teaser](https://github.com/BunnySoCrazy/SECAD-Net/blob/main/assets/teaser_github.gif)
 This repository provides the official code of SECAD-Net.
 
-📢: The current code can only use marching cubes to generate mesh, and the code to generate CAD format is currently a stub function. I'm currently facing some more urgent tasks, but I will post this part of the code as soon as possible, please understand.
+📢: The current code can only use marching cubes to generate mesh, and the code to generate CAD format is currently a stub function. I have proposed an initial implementation in this [issue discussion](https://github.com/BunnySoCrazy/SECAD-Net/issues/2#issuecomment-1783765741). After thorough testing and validation, I intend to merge this code into the main codebase of the repository. 
 
 ## Dependencies
 
