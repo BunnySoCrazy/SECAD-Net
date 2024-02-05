@@ -2,6 +2,8 @@
 ![teaser](https://github.com/BunnySoCrazy/SECAD-Net/blob/main/assets/teaser_github.gif)
 This repository provides the official code of SECAD-Net.
 
+📢: We will release the code for evaluation and the preprocessed Fusion360 dataset later. For detailed information or any inquiries, please contact pli142857@gmail.com.
+
 📢: The current code can only use marching cubes to generate mesh, and the code to generate CAD format is currently a stub function. I have proposed an initial implementation in this [issue discussion](https://github.com/BunnySoCrazy/SECAD-Net/issues/2#issuecomment-1783765741). After thorough testing and validation, I intend to merge this code into the main codebase of the repository. 
 
 ## Dependencies
