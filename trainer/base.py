@@ -78,7 +78,7 @@ class BaseTrainer(object):
         for k, v in losses_acc_values.items():
             tb.add_scalar(k, v, self.clock.step)
             
-    def updata_epoch_info(self, loss_dict, acc_dict):
+    def update_epoch_info(self, loss_dict, acc_dict):
         if self.clock.minibatch == 0:
             self.epoch_loss = None
             self.epoch_acc = None

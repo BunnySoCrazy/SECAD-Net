@@ -101,7 +101,7 @@ class FineTunerAE(BaseTrainer):
         self.optimizer_code.zero_grad()
         outputs, losses, acc_recall = self.forward(data)
         self.update_network(losses)
-        self.updata_epoch_info(losses, acc_recall)
+        self.update_epoch_info(losses, acc_recall)
         
         loss_info = OrderedDict({k: "{:.3f}".format(v.item()/(self.clock.minibatch+1))
                                 for k, v in self.epoch_loss.items()})

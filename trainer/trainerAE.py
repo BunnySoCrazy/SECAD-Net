@@ -67,7 +67,7 @@ class TrainerAE(BaseTrainer):
         outputs, losses, acc_recall = self.forward(data)
         self.update_network(losses)
         
-        self.updata_epoch_info(losses, acc_recall)
+        self.update_epoch_info(losses, acc_recall)
         if self.clock.step % 10 == 0:
             self.record_to_tb(losses, acc_recall)
         
