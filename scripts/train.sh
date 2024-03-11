@@ -1,1 +1,0 @@
-python train.py -e ABC -g 0

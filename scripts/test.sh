@@ -1,1 +1,0 @@
-python test.py -e ABC -g 0 -c best_ --mc_threshold 0.7 --start 0 --end 1

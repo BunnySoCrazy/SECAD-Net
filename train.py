@@ -8,6 +8,7 @@ from utils.workspace import load_experiment_specifications
 from dataset import dataloader
 from trainer import TrainerAE
 
+
 def main(args):
     # Set random seed
 	init_seeds()
