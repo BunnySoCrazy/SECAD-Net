@@ -7,6 +7,7 @@ from utils.workspace import load_experiment_specifications
 from trainer import FineTunerAE
 from dataset import dataloader
 
+
 def main(args):
     # Set random seed
 	init_seeds()
@@ -22,8 +23,7 @@ def main(args):
 	shape_indexes = list(range(int(args.start_index), int(args.end_index)))
 	print('Indices of shapes that need fine-tuning: ', shape_indexes)
 
-	epoches_each_stage = int(args.epoches)
-	stages = [0, 1]
+	epoches_ft = int(args.epoches)
  
 	specs["experiment_directory"] = experiment_directory
 
@@ -48,6 +48,7 @@ def main(args):
 			pbar.set_postfix(out_info)
 			ft_agent.save_model_if_best_per_shape(shapename)
 			clock.tock()
+ 
  
 if __name__ == "__main__":
 	arg_parser = argparse.ArgumentParser()
