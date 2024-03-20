@@ -9,12 +9,12 @@ from utils.workspace import get_model_params_dir,get_model_params_dir_shapename
 
 
 class FineTunerAE(BaseTrainer):
-    """Trainer for fine-tuning SECAD-Net.
+    """Trainer for fine-tuning or testing SECAD-Net.
     """
     def build_net(self):
         self.encoder = Encoder().cuda()
         self.decoder = Decoder(num_primitives=self.specs["NumPrimitives"]).cuda()
-        self.generator = Generator(num_primitives=self.specs["NumPrimitives"]).cuda()
+        self.generator = Generator(num_primitives=self.specs["NumPrimitives"], sharpness=150).cuda()
 
     def set_optimizer(self, lr, betas):
         self.optimizer = torch.optim.Adam(

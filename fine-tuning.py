@@ -6,6 +6,7 @@ from utils import init_seeds
 from utils.workspace import load_experiment_specifications
 from trainer import FineTunerAE
 from dataset import dataloader
+import numpy as np
 
 
 def main(args):
@@ -19,8 +20,23 @@ def main(args):
   	# Create dataset and data loader
 	occ_dataset = dataloader.VoxelSamples(specs["DataSource"])	
  
-  	# Indices of shapes that need fine-tuning
-	shape_indexes = list(range(int(args.start_index), int(args.end_index)))
+	if args.data_subset is None:
+		print('Running the complete data set sequentially.')
+		shape_indexes = list(range(int(args.start), int(args.end)))
+	else:
+		print('Running on the specified data subset.')
+		shape_indexes = []
+		with open(args.data_subset, 'r') as file:
+			for shape_name in file:
+				shape_name = shape_name.strip()
+				if shape_name in occ_dataset.data_names:
+					indices = np.where(occ_dataset.data_names == shape_name)[0]
+					if indices.size > 0:
+						shape_index = indices[0]
+						shape_indexes.append(shape_index)
+					else:
+						print(f"{shape_name} not found in data_names.")
+      
 	print('Indices of shapes that need fine-tuning: ', shape_indexes)
 
 	epoches_ft = int(args.epoches)
@@ -64,7 +80,12 @@ if __name__ == "__main__":
 		"-c",
 		dest="checkpoint",
 		default="best"
-	)
+	)	
+	arg_parser.add_argument(
+		"--subset",
+		dest="data_subset",
+		default=None
+		)
 	arg_parser.add_argument(
 		"--start",
 		dest="start_index",

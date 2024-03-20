@@ -4,6 +4,7 @@ import utils
 from utils.workspace import load_experiment_specifications
 from trainer import FineTunerAE
 from dataset import dataloader
+import numpy as np
 
 def main(args):
    	# Create experiment directory path
@@ -23,7 +24,23 @@ def main(args):
 		if not os.path.isdir(directory):
 			os.makedirs(directory)
   
-	shape_indexes = list(range(int(args.start), int(args.end)))
+	if args.data_subset is None:
+		print('Running the complete data set sequentially.')
+		shape_indexes = list(range(int(args.start), int(args.end)))
+	else:
+		print('Running on the specified data subset.')
+		shape_indexes = []
+		with open(args.data_subset, 'r') as file:
+			for shape_name in file:
+				shape_name = shape_name.strip()
+				if shape_name in occ_dataset.data_names:
+					indices = np.where(occ_dataset.data_names == shape_name)[0]
+					if indices.size > 0:
+						shape_index = indices[0]
+						shape_indexes.append(shape_index)
+					else:
+						print(f"{shape_name} not found in data_names.")
+     
 	print('Shape indexes all: ', shape_indexes)
 
 	specs["experiment_directory"] = experiment_directory
@@ -64,8 +81,13 @@ if __name__ == "__main__":
 		"--checkpoint",
 		"-c",
 		dest="checkpoint",
-		default="latest"
+		default="last_0"
 	)
+	arg_parser.add_argument(
+		"--subset",
+		dest="data_subset",
+		default=None
+		)
 	arg_parser.add_argument(
 		"--start",
 		dest="start",

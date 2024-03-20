@@ -1,0 +1,18 @@
+{   
+    "_comment": "===== You should set your own path =====",
+
+    "ABC_test_name_path": "/path/to/your/ABC/test_names.npz",
+    "ABC_points2mesh_path": "/path/to/your/ABC/points2mesh.hdf5",
+
+    "eval_namelist_path": "./ABC/ABC_list.txt",
+    "pred_meshs_folder_ori": "../exp_log/ABC/Reconstructions/MC",
+    "pred_meshs_folder_to": "./ABC/ABC_pred_mesh/",
+
+    "pred_points_folder": "./ABC/ABC_pred_point/",
+    "pred_edge_points_folder": "./ABC/ABC_pred_edge_point/",
+    "ground_truth_points_folder": "./ABC/ABC_GT_points/",
+    "ground_truth_edge_points_folder": "./ABC/ABC_GT_edge_points/",
+    "result_folder": "./ABC/eval_results",
+    "result_edge_folder": "./ABC/eval_edge_results"
+}
+  
