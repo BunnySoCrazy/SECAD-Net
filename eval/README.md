@@ -1,7 +1,8 @@
 
 # Model Evaluation Guide
 
-To start, you will need a text file containing all the filenames. In our example, this is located at `./ABC/ABC_list.txt`.
+To begin, you should prepare a text file that includes the names of the shapes within the subset of your dataset.
+In our example, this is located at `./ABC/ABC_list.txt`.
 
 Before you begin the actual evaluation process, it is essential to first fine-tune and test on the subset:
 
