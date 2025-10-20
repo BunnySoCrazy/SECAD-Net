@@ -31,7 +31,7 @@ $ sh scripts/test.sh
 
 ## Pre-trained model
 
-Download the pretrained model from this [link](https://drive.google.com/file/d/1uP-AoCqAMOQ9Q2W4fwk0iN5sGCY6UC4x/view?usp=share_link) and put it under `exp_log/ABC/ModelParameters/`, then run the fine-tuning code.
+Download the pretrained model and the JSON file from this [link](https://drive.google.com/drive/folders/1hLJ6JYI1eXoFG-Qc13Bx3o1s-nt9yHkH?usp=sharing) and put them under `exp_log/`, then run the fine-tuning code.
 
 ## Acknowledgement
 
